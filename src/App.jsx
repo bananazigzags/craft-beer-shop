@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, HashRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import { About } from './pages/About';
 import { Navbar } from './components/Navbar';
@@ -41,7 +41,7 @@ function App() {
       setStock
       }} 
     >
-      <HashRouter>
+      <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navbar />}>
           <Route index element={<Home data={data} />} />
