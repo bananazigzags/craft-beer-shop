@@ -1,0 +1,10 @@
+.basket-status {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 18px;
+}
+
+.basket-img {
+  height: 30px;
+}

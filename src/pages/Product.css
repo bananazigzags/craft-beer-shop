@@ -1,0 +1,30 @@
+.product-img {
+  height: 300px;
+  padding: 10px 0px;
+}
+
+.product {
+  margin: 50px 40px;
+  font-size: 20px;
+}
+
+.product-info {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 20px;
+}
+
+.product-info-block {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 60%;
+}
+
+.product-img-wrapper {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}

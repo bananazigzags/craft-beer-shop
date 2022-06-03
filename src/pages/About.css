@@ -1,0 +1,11 @@
+.about {
+  margin: 50px;
+}
+
+.about > p, h2, h3 {
+  margin-top: 20px;
+}
+
+.about > p {
+  font-size: 20px;
+}

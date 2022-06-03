@@ -1,0 +1,22 @@
+.btn {
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #1fc781;
+  font-size: 16px;
+  display: flex;
+  gap: 20px
+}
+
+.btn:hover {
+  background-color: rgb(133, 241, 147);
+}
+
+.addBasket-input {
+  width: 30px;
+  font-size: 20px;
+  border-radius: 5px;
+  border-color:rgb(133, 241, 147);
+  padding: 2px 5px;
+  outline: none;
+}

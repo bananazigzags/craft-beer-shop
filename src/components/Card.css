@@ -1,0 +1,40 @@
+.product-image {
+  height: 300px;
+}
+
+.card {
+  display: grid;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.card-price, .card-name {
+  padding: 20px 0px;
+  font-size: 20px;
+}
+
+.card-name:hover {
+  color: #1fc781;
+}
+
+.card-name {
+  text-decoration: none;
+}
+
+.outOfStock {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
+.outOfStock > img {
+  height: 30px;
+}
+
+.outOfStock-text {
+  color: rgb(126, 118, 121);
+  font-size: 18px;
+}
