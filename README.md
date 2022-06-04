@@ -2,6 +2,7 @@ Beer store made with Punk API and React Router v6.
 Click on title to see full product details.
 
 Logged in users can add items to cart and see cart total. To login, you can use username "Delphine" and password "Chaim_McDermott@dana.io" (or any user from https://jsonplaceholder.typicode.com/users - use email field as password)
+
 Published at https://bananazigzags.github.io/shop/  
 For direct routes to display correctly, I used HashRouter, so if you want to go to a page directly, please use #, like so https://bananazigzags.github.io/shop/#/about to see the About Page, or https://bananazigzags.github.io/shop/#/whatever to see 404.
 
