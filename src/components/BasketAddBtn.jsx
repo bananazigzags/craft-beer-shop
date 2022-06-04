@@ -1,4 +1,4 @@
-import './BasketAddBtn.css'
+import './styles/BasketAddBtn.css'
 import { useState, useContext } from 'react'
 import { AppContext } from '../App'
 import sad from '../icons/sad.svg'
@@ -30,8 +30,6 @@ export const BasketAddBtn = ({ price, id, inStock }) => {
   const handleChange = (e) => {
     setNum(e.target.value)
   }
-
-  console.log(stock);
 
   return inStock ?
     <button 

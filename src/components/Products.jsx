@@ -4,8 +4,8 @@ import { useContext } from "react"
 
 const Products = ({ collection }) => {
   const { stock } = useContext(AppContext);
-
-  return collection && collection.map(product => {
+  
+  return collection? collection.map(product => {
   return <Card 
   name={product.name}
   imgLink={product.image_url}
@@ -14,7 +14,7 @@ const Products = ({ collection }) => {
   id={product.id}
   inStock={stock[product.id] > 0}
   />
-  })
+  }) : null
 }
 
 export { Products }

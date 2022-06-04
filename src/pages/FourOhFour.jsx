@@ -1,4 +1,4 @@
-import './FourOhFour.css'
+import './styles/FourOhFour.css'
 
 const FourOhFour = () => {
   return (

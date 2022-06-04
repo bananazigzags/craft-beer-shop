@@ -1,0 +1,16 @@
+.x-btn {
+  padding: 5px;
+  background-color: rgb(133, 241, 147);
+  color: #5C038C;
+  border-radius: 5px;
+  border: none;
+}
+
+.btn-img {
+  height: 20px;
+}
+
+.close-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}

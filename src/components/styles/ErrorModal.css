@@ -1,0 +1,17 @@
+.error-modal-container {
+  position: fixed;
+  right: 10%;
+  bottom: 10%;
+  background-color: #5C038C;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  z-index: 1000;
+  text-align: center;
+  border: white solid 2px;
+}
+
+.error-modal-msg {
+  padding: 20px
+}

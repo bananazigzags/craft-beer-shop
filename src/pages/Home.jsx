@@ -1,9 +1,9 @@
 import { Products } from "../components/Products";
-import "./Home.css"
+import "./styles/Home.css"
 
 const Home = ({data}) => {
   return data &&
-    <div className="products">
+    <div className="products">     
       <Products collection={data} />
     </div>
 }

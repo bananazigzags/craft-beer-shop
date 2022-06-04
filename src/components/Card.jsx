@@ -1,9 +1,12 @@
-import './Card.css'
+import './styles/Card.css'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { BasketAddBtn } from './BasketAddBtn'
-import sad from '../icons/sad.svg'
+import { AppContext } from '../App'
+import { LoginMsg } from './LoginMsg'
 
 const Card = ({name, imgLink, id, price, inStock }) => { 
+  const { isAuthed } = useContext(AppContext);
   return (
     <div className="card">
       <Link to={`/beer/${id}`} className="card-name">
@@ -13,7 +16,10 @@ const Card = ({name, imgLink, id, price, inStock }) => {
         <img src={imgLink} alt={name} className="product-image"/>
       </Link>
       <p className="card-price">Цена: ${price || 4.5}</p>
-      <BasketAddBtn price={price} id={id} inStock={inStock}/> 
+      { isAuthed 
+      ? <BasketAddBtn price={price} id={id} inStock={inStock}/> 
+      : <LoginMsg />
+      }
     </div>
   )
 }

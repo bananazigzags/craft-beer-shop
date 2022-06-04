@@ -1,0 +1,8 @@
+.dog-img {
+  height: 40px;
+}
+
+.login-msg {
+  display: flex;
+  gap: 10px;
+}

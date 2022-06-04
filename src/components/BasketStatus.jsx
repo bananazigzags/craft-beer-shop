@@ -1,4 +1,4 @@
-import './BasketStatus.css'
+import './styles/BasketStatus.css'
 import svg from "../icons/basket.svg"
 
 const BasketStatus = ({ numProducts = 0, total = 0}) => {
