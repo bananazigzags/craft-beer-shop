@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect, useContext } from 'react'
 import { AppContext } from '../App'
 import './Product.css'
+import { BasketAddBtn } from '../components/BasketAddBtn'
 
 const Product = () => {
   const { beerId } = useParams()
@@ -31,7 +32,12 @@ const Product = () => {
         <p>{data.description}</p>
         <p>Алкоголь: {data.abv}%</p>
         <p>Цена: ${data.ph || 4.5}</p>
-        <p>В наличии: {stock[data.id]}</p>
+        {stock[data.id] > 0 ? <p>В наличии: {stock[data.id]}</p> : null}
+        <BasketAddBtn 
+          price={data.ph} 
+          id={data.id}
+          inStock={stock[data.id] > 0} 
+        />
       </div>
     </div>
     

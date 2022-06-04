@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom"
+import { NavLink, Outlet } from "react-router-dom"
 import { BasketStatus } from "./BasketStatus"
 import dog from '../icons/dog.svg'
 import "./Navbar.css"
@@ -17,8 +17,22 @@ const Navbar = () => {
       </div>
       <nav className="nav-content">
         <div className="nav-links">
-          <Link to="/" className="nav-link">Главная</Link> |{' '}
-          <Link to="/about" className="nav-link">О магазине</Link>
+          <NavLink 
+            to="/" 
+            className={({ isActive }) =>
+              isActive ? "active nav-link" : "nav-link"
+            }
+          >
+            Главная
+          </NavLink> |{' '}
+          <NavLink 
+            to="/about" 
+            className={({ isActive }) =>
+              isActive ? "active nav-link" : "nav-link"
+            }
+          >
+            О магазине
+          </NavLink>
         </div>
         <BasketStatus 
         numProducts={basket.amount}

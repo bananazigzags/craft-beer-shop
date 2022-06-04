@@ -31,7 +31,7 @@
   padding: 5px 10px;
 }
 
-.nav-link:hover {
+.nav-link:hover, .active {
   background-color: rgb(133, 241, 147);
   color: #5C038C;
   border-radius: 5px;
