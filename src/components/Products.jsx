@@ -1,9 +1,7 @@
 import Card from "./Card"
 import { connect } from 'react-redux'
 
-const Products = ({ collection, stock }) => {
-  console.log("products")
-  
+const Products = ({ collection, stock }) => { 
   return collection? collection.map(product => {
   return <Card 
   name={product.name}
