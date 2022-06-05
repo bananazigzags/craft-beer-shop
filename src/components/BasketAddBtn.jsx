@@ -1,12 +1,16 @@
 import './styles/BasketAddBtn.css'
-import { useState, useContext } from 'react'
-import { AppContext } from '../App'
+import { useState } from 'react'
 import sad from '../icons/sad.svg'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { addItem, addTotal } from '../redux/basketSlice'
+import { decrementByAmount, selectStock } from '../redux/stockSlice'
 
 export const BasketAddBtn = ({ price, id, inStock }) => {
   const [num, setNum] = useState(0)
   const [notEnough, setNotEnough] = useState(false)
-  const { setBasket, stock, setStock } = useContext(AppContext);
+  const stock = useSelector(selectStock)
+  const dispatch = useDispatch()
 
   const handleAdd = () => {
     let numBeers = parseInt(num);
@@ -18,12 +22,9 @@ export const BasketAddBtn = ({ price, id, inStock }) => {
       }, 1000)
     }
     if ((numBeers > 0) && (leftIfBought >= 0)) {
-      setBasket(prev => ({
-          amount: prev.amount + parseInt(num),
-          total: Math.round( (prev.total + num * price) * 100 + Number.EPSILON ) / 100
-        })
-      )
-      setStock(prev => ({...prev, [id]: prev[id] - num}))
+      dispatch(addItem(numBeers));
+      dispatch(addTotal(num * price));
+      dispatch(decrementByAmount({amount: numBeers, id: id}))
     }
   }
 

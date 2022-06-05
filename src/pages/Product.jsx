@@ -1,15 +1,20 @@
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useState, useEffect, useContext } from 'react'
-import { AppContext } from '../App'
+import { useSelector } from 'react-redux'
 import './styles/Product.css'
+
 import { BasketAddBtn } from '../components/BasketAddBtn'
 import { LoginMsg } from '../components/LoginMsg'
+import { selectStock } from "../redux/stockSlice"
+import { beersUrl } from '../util/constants'
+import { selectIsAuthed } from '../redux/isAuthedSlice'
 
 const Product = () => {
   const { beerId } = useParams()
-  const beerUrl = `https://api.punkapi.com/v2/beers?ids=${beerId}`
+  const beerUrl = `${beersUrl}?ids=${beerId}`;
   const [data, setData] = useState()
-  const { stock, isAuthed } = useContext(AppContext);
+  const isAuthed = useSelector(selectIsAuthed);
+  const stock = useSelector(selectStock);
 
   useEffect(() => {
     fetch(beerUrl)

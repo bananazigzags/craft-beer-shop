@@ -7,23 +7,17 @@ import { Product } from './pages/Product';
 import { Home } from './pages/Home'
 import { FourOhFour } from './pages/FourOhFour';
 import { ErrorServer } from './pages/ErrorServer';
-
-export const AppContext = React.createContext()
-let beersUrl = "https://api.punkapi.com/v2/beers?page=1&per_page=24";
+import { useDispatch } from 'react-redux';
+import { setStock } from './redux/stockSlice';
+import { beersUrl } from './util/constants'
 
 function App() {
-  const [basket, setBasket] = useState({
-    amount: 0,
-    total: 0
-  })
-
-  const [stock, setStock] = useState({})
-  const [isAuthed, setIsAuthed] = useState(false)
   const [serverOk, setServerOk] = useState(true)
   const [data, setData] = useState(null)
+  const dispatch = useDispatch();
   
   useEffect(() => {
-    fetch(beersUrl)
+    fetch(`${beersUrl}?page=1&per_page=24`)
     .then(response => {
       if (!response.ok) {
         setServerOk(false);
@@ -34,37 +28,27 @@ function App() {
     .then(data => {
       try {
       setData(data);
-      const stock = {};
+      const newStock = {};
       data.forEach(beer => { 
-        stock[beer.id] = Math.floor(beer.srm) || 0
+        newStock[beer.id] = Math.floor(beer.srm) || 0
       })
-      setStock(stock);
+      dispatch(setStock(newStock));
     } catch(e) {
       console.log(e)
     }})
-  }, [])
+  }, [dispatch])
 
   return (
-    <AppContext.Provider value={{ 
-      basket,
-      setBasket,
-      stock,
-      setStock,
-      isAuthed,
-      setIsAuthed
-      }} 
-    >
-      <HashRouter>
-      <Routes>
-        <Route path="/" element={<Navbar />}>
-          <Route index element={serverOk?<Home data={data} /> : <ErrorServer />} />
-          <Route path="about" element={<About />} />
-          <Route path="beer/:beerId" element={<Product />} />
-          <Route path="*" element={<FourOhFour />} />
-        </Route>
-      </Routes>
-      </HashRouter>
-    </AppContext.Provider>
+    <HashRouter>
+    <Routes>
+      <Route path="/" element={<Navbar />}>
+        <Route index element={serverOk?<Home data={data} /> : <ErrorServer />} />
+        <Route path="about" element={<About />} />
+        <Route path="beer/:beerId" element={<Product />} />
+        <Route path="*" element={<FourOhFour />} />
+      </Route>
+    </Routes>
+    </HashRouter>
   )
 }
 

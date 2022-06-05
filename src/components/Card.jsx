@@ -1,12 +1,12 @@
 import './styles/Card.css'
-import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { BasketAddBtn } from './BasketAddBtn'
-import { AppContext } from '../App'
 import { LoginMsg } from './LoginMsg'
+import { useSelector } from 'react-redux'
+import { selectIsAuthed } from '../redux/isAuthedSlice';
 
 const Card = ({name, imgLink, id, price, inStock }) => { 
-  const { isAuthed } = useContext(AppContext);
+  const isAuthed = useSelector(selectIsAuthed);
   return (
     <div className="card">
       <Link to={`/beer/${id}`} className="card-name">

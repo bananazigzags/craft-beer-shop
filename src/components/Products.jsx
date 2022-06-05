@@ -1,9 +1,9 @@
 import { Card } from "./Card"
-import { AppContext } from "../App"
-import { useContext } from "react"
+import { selectStock } from "../redux/stockSlice"
+import { useSelector } from 'react-redux'
 
 const Products = ({ collection }) => {
-  const { stock } = useContext(AppContext);
+  const stock = useSelector(selectStock)
   
   return collection? collection.map(product => {
   return <Card 
