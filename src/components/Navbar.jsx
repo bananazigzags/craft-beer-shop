@@ -4,22 +4,17 @@ import { ErrorModal } from "./ErrorModal"
 import dog from '../icons/dog.svg'
 import "./styles/Navbar.css"
 import { useState } from 'react'
+import { connect } from 'react-redux'
 import { Modal } from "./Modal"
 import { authenticate } from '../util/authenticate'
 import { setIsAuthed } from "../redux/actions"
-// import { useSelector, useDispatch, connect } from 'react-redux'
-import { connect } from 'react-redux'
-// import { selectBasket } from '../redux/basketSlice'
-// import { selectIsAuthed, setIsAuthed } from "../redux/isAuthedSlice"
+
 
 const Navbar = ({ isAuthed, basket, setIsAuthed }) => {
-  // const basket = useSelector(selectBasket);
   const [isOpen, setIsOpen] = useState(false);
   const [isFailedLogin, setIsFailedLogin] = useState(false);
-  // const isAuthed = useSelector(selectIsAuthed)
   const [isError, setError] = useState(false); 
   const [errorMessage, setErrorMessage] = useState(""); 
-  // const dispatch = useDispatch()
 
   const login = (login, password) => {
     fetch("https://jsonplaceholder.typicode.com/users")

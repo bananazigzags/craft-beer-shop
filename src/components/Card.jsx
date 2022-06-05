@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom'
 import BasketAddBtn from './BasketAddBtn'
 import { LoginMsg } from './LoginMsg'
 import { connect } from 'react-redux'
-// import { selectIsAuthed } from '../redux/isAuthedSlice';
 
 const Card = ({name, imgLink, id, price, inStock, isAuthed }) => { 
-  // const isAuthed = useSelector(selectIsAuthed);
   return (
     <div className="card">
       <Link to={`/beer/${id}`} className="card-name">

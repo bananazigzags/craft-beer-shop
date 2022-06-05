@@ -14,6 +14,8 @@ import { setStock } from './redux/actions'
 function App({setStock}) {
   const [serverOk, setServerOk] = useState(true)
   const [data, setData] = useState(null)
+
+  console.log("app")
   
   useEffect(() => {
     fetch(`${beersUrl}?page=1&per_page=24`)

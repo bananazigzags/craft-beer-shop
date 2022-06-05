@@ -1,9 +1,8 @@
 import Card from "./Card"
-// import { selectStock } from "../redux/stockSlice"
 import { connect } from 'react-redux'
 
 const Products = ({ collection, stock }) => {
-  // const stock = useSelector(selectStock)
+  console.log("products")
   
   return collection? collection.map(product => {
   return <Card 

@@ -1,11 +1,7 @@
 import './styles/BasketAddBtn.css'
-import { useState } from 'react'
 import sad from '../icons/sad.svg'
-
+import { useState } from 'react'
 import { connect } from 'react-redux'
-// import { addItem, addTotal } from '../redux/basketSlice'
-// import { decrementByAmount, selectStock } from '../redux/stockSlice'
-
 import { addItem, addTotal, decrementByAmount } from '../redux/actions'
 
 export const BasketAddBtn = ({ 
