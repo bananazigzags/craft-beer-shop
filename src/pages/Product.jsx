@@ -1,20 +1,16 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 import './styles/Product.css'
 
-import { BasketAddBtn } from '../components/BasketAddBtn'
+import BasketAddBtn from '../components/BasketAddBtn'
 import { LoginMsg } from '../components/LoginMsg'
-import { selectStock } from "../redux/stockSlice"
 import { beersUrl } from '../util/constants'
-import { selectIsAuthed } from '../redux/isAuthedSlice'
 
-const Product = () => {
+const Product = ({stock, isAuthed}) => {
   const { beerId } = useParams()
   const beerUrl = `${beersUrl}?ids=${beerId}`;
   const [data, setData] = useState()
-  const isAuthed = useSelector(selectIsAuthed);
-  const stock = useSelector(selectStock);
 
   useEffect(() => {
     fetch(beerUrl)
@@ -63,4 +59,9 @@ const Product = () => {
   </div>
 }
 
-export { Product }
+const mapStateToProps = (state) => {
+  const { stock, isAuthed } = state
+  return { stock, isAuthed }
+}
+
+export default connect(mapStateToProps, null)(Product)

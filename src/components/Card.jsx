@@ -1,12 +1,12 @@
 import './styles/Card.css'
 import { Link } from 'react-router-dom'
-import { BasketAddBtn } from './BasketAddBtn'
+import BasketAddBtn from './BasketAddBtn'
 import { LoginMsg } from './LoginMsg'
-import { useSelector } from 'react-redux'
-import { selectIsAuthed } from '../redux/isAuthedSlice';
+import { connect } from 'react-redux'
+// import { selectIsAuthed } from '../redux/isAuthedSlice';
 
-const Card = ({name, imgLink, id, price, inStock }) => { 
-  const isAuthed = useSelector(selectIsAuthed);
+const Card = ({name, imgLink, id, price, inStock, isAuthed }) => { 
+  // const isAuthed = useSelector(selectIsAuthed);
   return (
     <div className="card">
       <Link to={`/beer/${id}`} className="card-name">
@@ -24,4 +24,10 @@ const Card = ({name, imgLink, id, price, inStock }) => {
   )
 }
 
-export { Card }
+const mapStateToProps = (state, ownProps) => {
+  const { isAuthed } = state
+  const { name, imgLink, id, price, inStock } = ownProps
+  return { name, imgLink, id, price, inStock, isAuthed }
+}
+
+export default connect(mapStateToProps, null)(Card)

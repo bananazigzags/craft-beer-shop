@@ -2,15 +2,23 @@ import './styles/BasketAddBtn.css'
 import { useState } from 'react'
 import sad from '../icons/sad.svg'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { addItem, addTotal } from '../redux/basketSlice'
-import { decrementByAmount, selectStock } from '../redux/stockSlice'
+import { connect } from 'react-redux'
+// import { addItem, addTotal } from '../redux/basketSlice'
+// import { decrementByAmount, selectStock } from '../redux/stockSlice'
 
-export const BasketAddBtn = ({ price, id, inStock }) => {
+import { addItem, addTotal, decrementByAmount } from '../redux/actions'
+
+export const BasketAddBtn = ({ 
+  price, 
+  id, 
+  inStock, 
+  stock,
+  addItem,
+  addTotal,
+  decrementByAmount 
+}) => {
   const [num, setNum] = useState(0)
   const [notEnough, setNotEnough] = useState(false)
-  const stock = useSelector(selectStock)
-  const dispatch = useDispatch()
 
   const handleAdd = () => {
     let numBeers = parseInt(num);
@@ -22,9 +30,9 @@ export const BasketAddBtn = ({ price, id, inStock }) => {
       }, 1000)
     }
     if ((numBeers > 0) && (leftIfBought >= 0)) {
-      dispatch(addItem(numBeers));
-      dispatch(addTotal(num * price));
-      dispatch(decrementByAmount({amount: numBeers, id: id}))
+      (addItem(numBeers));
+      (addTotal(num * price));
+      (decrementByAmount({amount: numBeers, id: id}))
     }
   }
 
@@ -53,3 +61,17 @@ export const BasketAddBtn = ({ price, id, inStock }) => {
       <span className="outOfStock-text">Нет в наличии</span>
     </div>
 }
+
+const mapDispatchToProps = {
+  addItem,
+  addTotal,
+  decrementByAmount
+}
+
+const mapStateToProps = (state, ownProps) => {
+  const { stock } = state
+  const { price, id, inStock } = ownProps
+  return { stock, price, id, inStock }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BasketAddBtn)

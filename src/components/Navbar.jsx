@@ -6,18 +6,20 @@ import "./styles/Navbar.css"
 import { useState } from 'react'
 import { Modal } from "./Modal"
 import { authenticate } from '../util/authenticate'
-import { useSelector, useDispatch } from 'react-redux'
-import { selectBasket } from '../redux/basketSlice'
-import { selectIsAuthed, setIsAuthed } from "../redux/isAuthedSlice"
+import { setIsAuthed } from "../redux/actions"
+// import { useSelector, useDispatch, connect } from 'react-redux'
+import { connect } from 'react-redux'
+// import { selectBasket } from '../redux/basketSlice'
+// import { selectIsAuthed, setIsAuthed } from "../redux/isAuthedSlice"
 
-const Navbar = () => {
-  const basket = useSelector(selectBasket);
+const Navbar = ({ isAuthed, basket, setIsAuthed }) => {
+  // const basket = useSelector(selectBasket);
   const [isOpen, setIsOpen] = useState(false);
   const [isFailedLogin, setIsFailedLogin] = useState(false);
-  const isAuthed = useSelector(selectIsAuthed)
+  // const isAuthed = useSelector(selectIsAuthed)
   const [isError, setError] = useState(false); 
   const [errorMessage, setErrorMessage] = useState(""); 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   const login = (login, password) => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -32,7 +34,7 @@ const Navbar = () => {
     .then(data => {
       try {
         if(authenticate(login, password, data)) {
-          dispatch(setIsAuthed(true));
+          setIsAuthed(true);
           setIsOpen(false);
         } else {
           setIsFailedLogin(true)
@@ -49,7 +51,7 @@ const Navbar = () => {
   }
 
   const handleLoginLogout = () => {
-    isAuthed ? dispatch(setIsAuthed(false)) : setIsOpen(true)
+    isAuthed ? setIsAuthed(false) : setIsOpen(true)
   }
 
   const handleClose = () => {
@@ -122,4 +124,13 @@ const Navbar = () => {
   )
 }
 
-export { Navbar }
+const mapDispatchToProps = {
+  setIsAuthed
+}
+
+const mapStateToProps = (state) => {
+  const { isAuthed, basket} = state
+  return { isAuthed, basket }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

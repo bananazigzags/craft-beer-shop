@@ -1,9 +1,9 @@
-import { Card } from "./Card"
-import { selectStock } from "../redux/stockSlice"
-import { useSelector } from 'react-redux'
+import Card from "./Card"
+// import { selectStock } from "../redux/stockSlice"
+import { connect } from 'react-redux'
 
-const Products = ({ collection }) => {
-  const stock = useSelector(selectStock)
+const Products = ({ collection, stock }) => {
+  // const stock = useSelector(selectStock)
   
   return collection? collection.map(product => {
   return <Card 
@@ -17,4 +17,10 @@ const Products = ({ collection }) => {
   }) : null
 }
 
-export { Products }
+export const mapStateToProps = (state, ownProps) => {
+  const { stock } = state
+  const { collection } = ownProps
+  return { stock, collection }
+}
+
+export default connect(mapStateToProps, null)(Products)
