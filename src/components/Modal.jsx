@@ -1,11 +1,10 @@
 import { FormInput } from './FormInput'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import './styles/Modal.css'
 import sad from '../icons/sad.svg';
 import { CloseBtn } from './CloseBtn';
 
-
-export const Modal = ({ onLogin, onClose, isFailedLogin, setIsFailedLogin }) => {
+export const Modal = ({onLogin, onClose, isFailedLogin, setIsFailedLogin}) => {
   const [loginData, setLoginData] = useState({
     login: "",
     password: "",

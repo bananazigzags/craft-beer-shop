@@ -40,6 +40,7 @@ const Product = ({stock, isAuthed}) => {
               price={data.ph} 
               id={data.id}
               inStock={stock[data.id] > 0} 
+              productStock={stock[data.id]}
             />
             : <LoginMsg />
             }

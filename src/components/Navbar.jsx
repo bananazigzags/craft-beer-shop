@@ -5,10 +5,9 @@ import dog from '../icons/dog.svg'
 import "./styles/Navbar.css"
 import { useState } from 'react'
 import { connect } from 'react-redux'
-import { Modal } from "./Modal"
+import { Modal } from "./Modal.jsx"
 import { authenticate } from '../util/authenticate'
 import { setIsAuthed } from "../redux/actions"
-
 
 const Navbar = ({ isAuthed, basket, setIsAuthed }) => {
   const [isOpen, setIsOpen] = useState(false);

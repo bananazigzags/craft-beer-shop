@@ -9,6 +9,7 @@ const Products = ({ collection, stock }) => {
   price={product.ph}
   key={product.id}
   id={product.id}
+  productStock={stock[product.id]}
   inStock={stock[product.id] > 0}
   />
   }) : null

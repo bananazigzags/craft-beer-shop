@@ -4,11 +4,11 @@ import { useState } from 'react'
 import { connect } from 'react-redux'
 import { addItem, addTotal, decrementByAmount } from '../redux/actions'
 
-export const BasketAddBtn = ({ 
+const BasketAddBtn = ({ 
   price, 
   id, 
   inStock, 
-  stock,
+  productStock,
   addItem,
   addTotal,
   decrementByAmount 
@@ -18,7 +18,7 @@ export const BasketAddBtn = ({
 
   const handleAdd = () => {
     let numBeers = parseInt(num);
-    let leftIfBought = stock[id] - numBeers;
+    let leftIfBought = productStock - numBeers;
     if (leftIfBought < 0) {
       setNotEnough(true);
       setTimeout(() => {
@@ -42,7 +42,7 @@ export const BasketAddBtn = ({
     >
       <div onClick={handleAdd}>
         {notEnough 
-        ? `Осталось всего ${stock[id]}` 
+        ? `Осталось всего ${productStock}` 
         : "Добавить в корзину"}
       </div>
       <input 
@@ -64,10 +64,4 @@ const mapDispatchToProps = {
   decrementByAmount
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const { stock } = state
-  const { price, id, inStock } = ownProps
-  return { stock, price, id, inStock }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(BasketAddBtn)
+export default connect(null, mapDispatchToProps)(BasketAddBtn)

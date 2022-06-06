@@ -4,7 +4,7 @@ import BasketAddBtn from './BasketAddBtn'
 import { LoginMsg } from './LoginMsg'
 import { connect } from 'react-redux'
 
-const Card = ({name, imgLink, id, price, inStock, isAuthed }) => { 
+const Card = ({name, imgLink, id, price, productStock, inStock, isAuthed }) => { 
   return (
     <div className="card">
       <Link to={`/beer/${id}`} className="card-name">
@@ -15,7 +15,7 @@ const Card = ({name, imgLink, id, price, inStock, isAuthed }) => {
       </Link>
       <p className="card-price">Цена: ${price || 4.5}</p>
       { isAuthed 
-      ? <BasketAddBtn price={price} id={id} inStock={inStock}/> 
+      ? <BasketAddBtn productStock={productStock} price={price} id={id} inStock={inStock}/> 
       : <LoginMsg />
       }
     </div>
