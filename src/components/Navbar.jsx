@@ -4,16 +4,20 @@ import { ErrorModal } from "./ErrorModal"
 import dog from '../icons/dog.svg'
 import "./styles/Navbar.css"
 import { useState } from 'react'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Modal } from "./Modal.jsx"
 import { authenticate } from '../util/authenticate'
 import { setIsAuthed } from "../redux/actions"
+import { selectIsAuthed, selectBasket } from "../redux/selectors"
 
-const Navbar = ({ isAuthed, basket, setIsAuthed }) => {
+export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isFailedLogin, setIsFailedLogin] = useState(false);
   const [isError, setError] = useState(false); 
   const [errorMessage, setErrorMessage] = useState(""); 
+  const basket = useSelector(selectBasket);
+  const isAuthed = useSelector(selectIsAuthed);
+  const dispatch = useDispatch()
 
   const login = (login, password) => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -28,10 +32,10 @@ const Navbar = ({ isAuthed, basket, setIsAuthed }) => {
     .then(data => {
       try {
         if(authenticate(login, password, data)) {
-          setIsAuthed(true);
+          dispatch(setIsAuthed(true));
           setIsOpen(false);
         } else {
-          setIsFailedLogin(true)
+          setIsFailedLogin(true);
         }
       } catch(e) {
         setError(true);
@@ -45,7 +49,7 @@ const Navbar = ({ isAuthed, basket, setIsAuthed }) => {
   }
 
   const handleLoginLogout = () => {
-    isAuthed ? setIsAuthed(false) : setIsOpen(true)
+    isAuthed ? dispatch(setIsAuthed(false)) : setIsOpen(true)
   }
 
   const handleClose = () => {
@@ -117,14 +121,3 @@ const Navbar = ({ isAuthed, basket, setIsAuthed }) => {
     </>
   )
 }
-
-const mapDispatchToProps = {
-  setIsAuthed
-}
-
-const mapStateToProps = (state) => {
-  const { isAuthed, basket} = state
-  return { isAuthed, basket }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

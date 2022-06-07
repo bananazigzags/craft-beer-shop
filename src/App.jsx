@@ -2,19 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, HashRouter } from 'react-router-dom';
 import './App.css';
 import { About } from './pages/About';
-import Navbar from './components/Navbar';
-import Product from './pages/Product';
+import { Navbar } from './components/Navbar';
+import { Product } from './pages/Product';
 import { Home } from './pages/Home'
 import { FourOhFour } from './pages/FourOhFour';
 import { ErrorServer } from './pages/ErrorServer';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { beersUrl } from './util/constants'
-import { setStock } from './redux/actions'
+import { setStock } from './redux/actions';
 
-function App({setStock}) {
+export default function App() {
   const [serverOk, setServerOk] = useState(true)
   const [data, setData] = useState(null)
-    
+  const dispatch = useDispatch()
+
   useEffect(() => {
     fetch(`${beersUrl}?page=1&per_page=24`)
     .then(response => {
@@ -31,7 +32,7 @@ function App({setStock}) {
       data.forEach(beer => { 
         newStock[beer.id] = Math.floor(beer.srm) || 0
       })
-      setStock(newStock);
+      dispatch(setStock(newStock));
     } catch(e) {
       console.log(e)
     }})
@@ -50,9 +51,3 @@ function App({setStock}) {
     </HashRouter>
   )
 }
-
-const mapDispatchToProps = {
-  setStock
-}
-
-export default connect(null, mapDispatchToProps)(App)
