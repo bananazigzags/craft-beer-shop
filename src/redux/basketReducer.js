@@ -1,17 +1,41 @@
-import { ADD_ITEM, ADD_TOTAL } from "./types";
+import { ADD_ITEM, CLR_BASKET, DEL_POS, BEER_DOWN } from "./types";
 
-const initialState = {
-  amount: 0,
-  total: 0,
+export const initialState = {
+  items: {},
 };
 
 export const basketReducer = (state = initialState, action) => {
+  const newState = { ...state};
   switch (action.type) {
     case ADD_ITEM:
-      return { ...state, amount: state.amount + action.payload}
-    case ADD_TOTAL:
-      return {...state, total: Math.round((state.total + action.payload) * 100 + Number.EPSILON) / 100}
+      if (state.items[action.payload.id]) {
+        newState.items[action.payload.id] = {
+          ...newState.items[action.payload.id],
+          amount: state.items[action.payload.id].amount + action.payload.amount,
+        };
+      } else {
+        newState.items[action.payload.id] = {
+          name: action.payload.name,
+          price: action.payload.price,
+          amount: action.payload.amount,
+        }
+      }
+      return newState;
+    case DEL_POS:
+      delete newState.items[action.payload.id]
+      return newState;
+    case CLR_BASKET:
+      return {items: {}};
+    case BEER_DOWN:
+      newState.items[action.payload.id] = {
+        ...newState.items[action.payload.id],
+        amount: state.items[action.payload.id].amount - 1
+      }
+      if(newState.items[action.payload.id].amount === 0) {
+        delete newState.items[action.payload.id];
+      }
+      return newState
     default:
-      return state
+      return state;
   }
 }

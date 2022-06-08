@@ -1,9 +1,14 @@
 import { 
   ADD_ITEM,
-  ADD_TOTAL, 
+  CLR_BASKET, 
   DECREMENT_STOCK, 
+  DEL_POS, 
   SET_AUTHED, 
-  SET_STOCK 
+  SET_BEERS, 
+  SET_ERROR, 
+  SET_MSG, 
+  SET_STOCK,
+  BEER_DOWN 
 } from "./types"
 
 export const setIsAuthed = (bool) => {
@@ -27,6 +32,13 @@ export const setStock = (stock) => {
   }
 }
 
+export const setBeers = (beers) => {
+  return {
+    type: SET_BEERS,
+    payload: beers
+  }
+}
+
 export const addItem = (item) => {
   return {
     type: ADD_ITEM,
@@ -34,9 +46,37 @@ export const addItem = (item) => {
   }
 }
 
-export const addTotal = (num) => {
+export const beerDown = (item) => {
   return {
-    type: ADD_TOTAL,
-    payload: num
+    type: BEER_DOWN,
+    payload: item
+  }
+}
+
+export const delPos = (item) => {
+  return {
+    type: DEL_POS,
+    payload: item
+  }
+}
+
+export const clearBasket = (emptyBasket) => {
+  return {
+    type: CLR_BASKET,
+    payload: emptyBasket
+  }
+}
+
+export const setError = (bool) => {
+  return {
+    type: SET_ERROR,
+    payload: bool
+  }
+}
+
+export const setMessage = (text) => {
+  return {
+    type: SET_MSG,
+    payload: text
   }
 }

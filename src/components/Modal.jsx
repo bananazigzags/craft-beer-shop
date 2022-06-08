@@ -10,8 +10,8 @@ export const Modal = ({onLogin, onClose, isFailedLogin, setIsFailedLogin}) => {
     password: "",
   })
 
-  const handleChange = (e) => {
-    setLoginData(prev => ({...prev, [e.target.name]: e.target.value}));
+  const handleChange = ({target}) => {
+    setLoginData(prev => ({...prev, [target.name]: target.value}));
     setIsFailedLogin(false);
   };
 

@@ -9,6 +9,7 @@ import { Modal } from "./Modal.jsx"
 import { authenticate } from '../util/authenticate'
 import { setIsAuthed } from "../redux/actions"
 import { selectIsAuthed, selectBasket } from "../redux/selectors"
+import { basketTotal } from "../util/basketTotal"
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +19,9 @@ export const Navbar = () => {
   const basket = useSelector(selectBasket);
   const isAuthed = useSelector(selectIsAuthed);
   const dispatch = useDispatch()
+
+  let amountBasket = Object.values(basket.items).reduce((prev, cur) => prev + cur.amount, 0);
+  let totalBasket = basketTotal(basket);
 
   const login = (login, password) => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -100,8 +104,8 @@ export const Navbar = () => {
         </div>
         {isAuthed ? <div className="auth-basket-block">
           <BasketStatus 
-            numProducts={basket.amount}
-            total={basket.total}
+            numProducts={amountBasket}
+            total={totalBasket}
           />
         </div> : null}
       </nav>

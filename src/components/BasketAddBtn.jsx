@@ -2,9 +2,10 @@ import './styles/BasketAddBtn.css'
 import sad from '../icons/sad.svg'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addItem, addTotal, decrementByAmount } from '../redux/actions'
+import { addItem, decrementByAmount } from '../redux/actions'
 
 export const BasketAddBtn = ({ 
+  name,
   price, 
   id, 
   inStock, 
@@ -24,8 +25,13 @@ export const BasketAddBtn = ({
       }, 1000)
     }
     if ((numBeers > 0) && (leftIfBought >= 0)) {
-      dispatch(addItem(numBeers));
-      dispatch(addTotal(num * price));
+      dispatch(addItem({
+        id: id, 
+        name: name,
+        price: price,
+        amount: numBeers,
+        total: price * num
+      }));
       dispatch(decrementByAmount({amount: numBeers, id: id}))
     }
   }

@@ -1,3 +1,8 @@
 .server-error {
   margin: 50px;
 }
+
+.error-msg-main {
+  font-size: 20px;
+  margin-top: 20px;
+}

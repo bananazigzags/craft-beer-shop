@@ -17,7 +17,13 @@ export const Card = ({name, imgLink, id, price, productStock, inStock }) => {
       </Link>
       <p className="card-price">Цена: ${price || 4.5}</p>
       { isAuthed 
-      ? <BasketAddBtn productStock={productStock} price={price} id={id} inStock={inStock}/> 
+      ? <BasketAddBtn 
+      productStock={productStock} 
+      price={price} 
+      id={id} 
+      inStock={inStock}
+      name={name}
+      /> 
       : <LoginMsg />
       }
     </div>

@@ -1,0 +1,71 @@
+td {
+  padding: 10px;
+  font-size: 20px;
+  border: 1px solid;
+}
+
+.basket {
+  margin: 50px; 
+  font-size: 20px;
+}
+
+.bskt-amount {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.bskt-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background-color: #fff;
+}
+
+.bskt-btns > button {
+  padding: 3px 7px;
+  border-radius: 5px;
+}
+
+.basket > h1 {
+  margin-bottom: 30px;
+}
+
+td {
+  text-align: center;
+}
+
+.td-name {
+  text-align: left;
+}
+
+.td-money {
+  text-align: right;
+}
+
+.pay-btn, .clear-btn {
+  padding: 15px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.clear-btn, .bskt-btns > button {
+  border: none;
+  background-color: #1fc781;
+}
+
+.clear-btn:hover, .bskt-btns > button:hover {
+  background-color: rgb(133, 241, 147);
+}
+
+
+.trashcan {
+  height: 30px;
+}
+
+.pay-cell {
+  border: none;
+  padding: 0;
+}
