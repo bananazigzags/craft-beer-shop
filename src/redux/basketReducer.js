@@ -16,7 +16,7 @@ export const basketReducer = (state = initialState, action) => {
       } else {
         newState.items[action.payload.id] = {
           name: action.payload.name,
-          price: action.payload.price,
+          price: action.payload.price || 4.5,
           amount: action.payload.amount,
         }
       }

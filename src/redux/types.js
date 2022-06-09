@@ -1,4 +1,5 @@
 export const DECREMENT_STOCK = 'DECREMENT_STOCK'
+export const INCREMENT_STOCK = 'INCREMENT_STOCK'
 export const SET_STOCK = 'SET_STOCK'
 export const ADD_ITEM = 'ADD_ITEM'
 export const DEL_POS = 'DEL_POS'

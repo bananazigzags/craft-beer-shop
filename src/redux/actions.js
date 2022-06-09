@@ -8,7 +8,8 @@ import {
   SET_ERROR, 
   SET_MSG, 
   SET_STOCK,
-  BEER_DOWN 
+  BEER_DOWN, 
+  INCREMENT_STOCK
 } from "./types"
 
 export const setIsAuthed = (bool) => {
@@ -21,6 +22,13 @@ export const setIsAuthed = (bool) => {
 export const decrementByAmount = (item) => {
   return {
     type: DECREMENT_STOCK,
+    payload: item
+  }
+}
+
+export const incrementByAmount = (item) => {
+  return {
+    type: INCREMENT_STOCK,
     payload: item
   }
 }

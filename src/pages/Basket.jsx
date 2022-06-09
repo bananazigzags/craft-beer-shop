@@ -1,16 +1,18 @@
 import { useSelector, useDispatch } from 'react-redux';
-
-import { selectBasket, selectIsAuthed } from '../redux/selectors';
+import { useState } from 'react';
+import { selectBasket, selectIsAuthed, selectStock } from '../redux/selectors';
 import trash from '../icons/trash.svg'
 import './styles/Basket.css'
-import { clearBasket, delPos, addItem, beerDown } from '../redux/actions';
+import { clearBasket, delPos, addItem, beerDown, decrementByAmount, incrementByAmount } from '../redux/actions';
 import { basketTotal } from '../util/basketTotal';
 
 export const Basket = () => {
+  const [stockError, setStockError] = useState(null);
   const dispatch = useDispatch();
   const basket = useSelector(selectBasket);
   const isAuthed = useSelector(selectIsAuthed);
   const items = basket.items;
+  const stock = useSelector(selectStock);
   let totalBasket = basketTotal(basket);
 
   let rows = [];
@@ -27,11 +29,20 @@ export const Basket = () => {
   }
 
   const handleBeerUp = ({target}) => {
-    dispatch(addItem({id: target.id, amount: 1}))
+    if (stock[target.id] > 0) {
+      dispatch(addItem({id: target.id, amount: 1}))
+      dispatch(decrementByAmount({id: target.id, amount: 1}))
+    } else {
+      setStockError("Это пиво закончилось")
+      setTimeout(() => {
+        setStockError("")
+      }, 1000)
+    }
   }
 
   const handleBeerDown = ({target}) => {
     dispatch(beerDown({id: target.id}))
+    dispatch(incrementByAmount({id: target.id, amount: 1}))
   }
 
   if (Object.keys(items).length !== 0 ) {
@@ -76,7 +87,7 @@ export const Basket = () => {
             </tr>
             {rows}
             <tr>
-              <td colSpan="4"></td>
+              <td colSpan="4" className='td-money'>{stockError}</td>
               <td className='td-money'>{`$${totalBasket}`}</td>
               <td></td>
             </tr>
