@@ -1,4 +1,4 @@
-import { SET_AUTHED } from "./types";
+import { SET_AUTHED } from "../types";
 
 const initialState = false;
 

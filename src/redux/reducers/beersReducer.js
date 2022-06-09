@@ -1,4 +1,4 @@
-import { SET_BEERS } from "./types";
+import { SET_BEERS } from "../types";
 
 const initialState = [];
 

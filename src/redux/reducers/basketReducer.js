@@ -1,4 +1,4 @@
-import { ADD_ITEM, CLR_BASKET, DEL_POS, BEER_DOWN } from "./types";
+import { ADD_ITEM, CLR_BASKET, DEL_POS, BEER_DOWN } from "../types";
 
 export const initialState = {
   items: {},

@@ -1,4 +1,4 @@
-import { SET_ERROR, SET_MSG } from "./types";
+import { SET_ERROR, SET_MSG } from "../types";
 
 const initialState = {
   error: false,

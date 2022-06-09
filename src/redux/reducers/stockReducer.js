@@ -1,4 +1,4 @@
-import { DECREMENT_STOCK, INCREMENT_STOCK, SET_STOCK } from "./types";
+import { DECREMENT_STOCK, INCREMENT_STOCK, SET_STOCK } from "../types";
 
 const initialState = {};
 
