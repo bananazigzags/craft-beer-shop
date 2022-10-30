@@ -15,5 +15,9 @@ For direct routes to display correctly, I used HashRouter, so if you want to go 
 Для корректного отображения прямых ссылок использовался HashRouter - поэтому при использовании прямого адреса вводите, используя #, например https://bananazigzags.github.io/shop/#/about или https://bananazigzags.github.io/shop/#/whatever чтобы увидеть 404.
 
 ![sobaka1](https://user-images.githubusercontent.com/56584077/198903782-8394039f-c63e-4b98-9bda-219639a9ba2f.JPG)
+Логин
 ![sobaka2](https://user-images.githubusercontent.com/56584077/198904001-055f4c67-8b85-4dd7-a542-5f4dd400d258.JPG)
+Добавляем товары
 ![image](https://user-images.githubusercontent.com/56584077/198903922-1155c28d-afa0-49be-8589-08bfbbaef2e9.png)
+Корзину можно редактировать 
+![image](https://user-images.githubusercontent.com/56584077/198904034-156120ad-df9b-401b-ba75-f8111f45b3ef.png)
