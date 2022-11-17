@@ -3,7 +3,7 @@ Click on title to see full product details.
 
 Logged in users can add items to cart and see cart total. To login, you can use username "Delphine" and password "Chaim_McDermott@dana.io" (or any user from https://jsonplaceholder.typicode.com/users - use email field as password)
 
-Published at https://bananazigzags.github.io/shop/
+Published at https://bananazigzags.github.io/craft-beer-shop/
 
 For direct routes to display correctly, I used HashRouter, so if you want to go to a page directly, please use #, like so https://bananazigzags.github.io/shop/#/about to see the About Page, or https://bananazigzags.github.io/shop/#/whatever to see 404.
 
@@ -19,5 +19,5 @@ For direct routes to display correctly, I used HashRouter, so if you want to go 
 ![sobaka2](https://user-images.githubusercontent.com/56584077/198904001-055f4c67-8b85-4dd7-a542-5f4dd400d258.JPG)
 Добавляем товары
 ![image](https://user-images.githubusercontent.com/56584077/198903922-1155c28d-afa0-49be-8589-08bfbbaef2e9.png)
-Корзину можно редактировать 
+Корзину можно редактировать
 ![image](https://user-images.githubusercontent.com/56584077/198904034-156120ad-df9b-401b-ba75-f8111f45b3ef.png)
